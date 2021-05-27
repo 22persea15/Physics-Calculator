@@ -11,6 +11,9 @@ root.geometry("475x350")
 
 #New Window Functions -----------
 
+#I have a sneaking suspicion I should be putting these in the Classes
+#But I don't know how to use class methods in the widgets so
+
 def kinematics_window():
     kinematics_window = tk.Toplevel(root)
     kinematics_window.title("Physics Calculator: Kinematics")
@@ -46,8 +49,17 @@ def energy_window():
     energy_window.geometry("475x350")
     
     #-----Energy Widgets
-    average_velocity = tk.Button(energy_window, text = "average velocity", width=20)
-    average_velocity.pack()
+    kinetic_energy = tk.Button(energy_window, text = "Kinetic Energy", width=20)
+    kinetic_energy.pack()
+    
+    gravitational_energy = tk.Button(energy_window, text = "Gravitational Potential Energy", width=20)
+    gravitational_energy.pack()
+    
+    elastic_energy = tk.Button(energy_window, text = "Elastic Potential Energy", width=20)
+    elastic_energy.pack()
+    
+    mechanical_energy = tk.Button(energy_window, text = "Mechanical Energy", width=20)
+    mechanical_energy.pack()
     
 def momentum_window():
     momentum_window = tk.Toplevel(root)
@@ -94,39 +106,41 @@ def waves_window():
     average_velocity = tk.Button(waves_window, text = "average velocity", width=20)
     average_velocity.pack()
 
+
+
 #New Window Widgets ------------
 ap_physics_1_topics = tk.Label(root, text="AP Physics 1")
-ap_physics_1_topics.pack()
+ap_physics_1_topics.grid(column=1, row=1)
 
 create_kinematics_window = tk.Button(root, text="Kinematics", width=20, command=kinematics_window)
-create_kinematics_window.pack()
+create_kinematics_window.grid(column=1, row=2)
 
 create_dynamics_window = tk.Button(root, text="Dynamics", width=20, command=dynamics_window)
-create_dynamics_window.pack()
+create_dynamics_window.grid(column=1, row=3)
 
 create_circular_motion_window = tk.Button(root, text="Circular Motion", width=20, command=cmotion_window)
-create_circular_motion_window.pack()
+create_circular_motion_window.grid(column=1, row=4)
 
 create_energy_window = tk.Button(root, text="Energy", width=20, command=energy_window)
-create_energy_window.pack()
+create_energy_window.grid(column=1, row=5)
 
 create_momentum_window = tk.Button(root, text="Momentum", width=20, command=momentum_window)
-create_momentum_window.pack()
+create_momentum_window.grid(column=1, row=6)
 
 create_shmotion_window = tk.Button(root, text="Simple Harmonic Motion", width=20, command=simple_harmonic_window)
-create_shmotion_window.pack()
+create_shmotion_window.grid(column=1, row=7)
 
 create_rotational_window = tk.Button(root, text="Rotational Motion", width=20, command=rotational_window)
-create_rotational_window.pack()
+create_rotational_window.grid(column=1, row=8)
 
 create_electicity_window = tk.Button(root, text="Electricity", width=20, command=electricity_window)
-create_electicity_window.pack()
+create_electicity_window.grid(column=1, row=9)
 
 create_waves_window = tk.Button(root, text="Waves", width=20, command=waves_window)
-create_waves_window.pack()
+create_waves_window.grid(column=1, row=10)
 
 ap_physics_2_topics = tk.Label(root, text="AP Physics 2 (coming soon)")
-ap_physics_2_topics.pack()
+ap_physics_2_topics.grid(column=2, row=1)
     
 #This function is just to get rid of the error with the widgets
 def kinetic_energy():
@@ -251,27 +265,8 @@ def reset():
     label_result["text"] = ("\n\nWhat would you like to calculate?")
 
 #Widgets ------------
-#-----Kinematics Widgets
-#-----Dynamics Widgets
-#-----Circular Motion Widgets
-#-----Energy Widgets
-#-----Momentum Widgets
-#-----Simple Harmonics Widgets
-#-----Rotational Motion Widgets
-#-----Electricty Widgets
-#-----Waves Widgets
-
-
-#solve for u
-#solve for v
-#solve for a
-#solve for t
-#solve for s
-
-
-#solve for average v
-#solve for displacement
-#solve for t
+#in the new window functions!
+# refer to energy gui we made earlier
 
 
 #Mainloop ------------
