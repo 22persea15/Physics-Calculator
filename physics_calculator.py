@@ -9,21 +9,126 @@ root = tk.Tk()
 root.title("Physics Calculator")
 root.geometry("475x350")
 
-#def createNewWindow():
-#    newWindow = tk.Toplevel(app)
-#    labelExample = tk.Label(newWindow, text = "New Window")
-#    buttonExample = tk.Button(newWindow, text = "New Window button")
+#New Window Functions -----------
 
-#    labelExample.pack()
-#   buttonExample.pack()
+def kinematics_window():
+    kinematics_window = tk.Toplevel(root)
+    kinematics_window.title("Physics Calculator: Kinematics")
+    kinematics_window.geometry("475x350")
+    
+    #-----Kinematics Widgets
+    topic_label = tk.Label(kinematics_window, text = "Kinematics")
+    topic_label.pack()
+    average_velocity = tk.Button(kinematics_window, text = "average velocity", width=20)
+    average_velocity.pack()
 
-#app = tk.Tk()
-#buttonExample = tk.Button(app, 
-#              text="Create new window",
-#              command=createNewWindow)
-#buttonExample.pack()
+def dynamics_window():
+    dynamics_window = tk.Toplevel(root)
+    dynamics_window.title("Physics Calculator: Dynamics")
+    dynamics_window.geometry("475x350")
+    
+    #-----Dynamics Widgets
+    average_velocity = tk.Button(dynamics_window, text = "average velocity", width=20)
+    average_velocity.pack()
+    
+def cmotion_window():
+    cmotion_window = tk.Toplevel(root)
+    cmotion_window.title("Physics Calculator: Circular Motion")
+    cmotion_window.geometry("475x350")
+    
+    #-----Circular Motion Widgets
+    average_velocity = tk.Button(cmotion_window, text = "average velocity", width=20)
+    average_velocity.pack()
+    
+def energy_window():
+    energy_window = tk.Toplevel(root)
+    energy_window.title("Physics Calculator: Energy")
+    energy_window.geometry("475x350")
+    
+    #-----Energy Widgets
+    average_velocity = tk.Button(energy_window, text = "average velocity", width=20)
+    average_velocity.pack()
+    
+def momentum_window():
+    momentum_window = tk.Toplevel(root)
+    momentum_window.title("Physics Calculator: Momentum")
+    momentum_window.geometry("475x350")
+    
+    #-----Momentum Widgets
+    average_velocity = tk.Button(momentum_window, text = "average velocity", width=20)
+    average_velocity.pack()
 
+def simple_harmonic_window():
+    simple_harmonic_window = tk.Toplevel(root)
+    simple_harmonic_window.title("Physics Calculator: Simple Harmonic Motion")
+    simple_harmonic_window.geometry("475x350")
+    
+    #-----Momentum Widgets
+    average_velocity = tk.Button(simple_harmonic_window, text = "average velocity", width=20)
+    average_velocity.pack()
 
+def rotational_window():
+    rotational_window = tk.Toplevel(root)
+    rotational_window.title("Physics Calculator: Rotational Motion")
+    rotational_window.geometry("475x350")
+    
+    #-----Momentum Widgets
+    average_velocity = tk.Button(rotational_window, text = "average velocity", width=20)
+    average_velocity.pack()
+
+def electricity_window():
+    electricity_window = tk.Toplevel(root)
+    electricity_window.title("Physics Calculator: Electricity")
+    electricity_window.geometry("475x350")
+    
+    #-----Momentum Widgets
+    average_velocity = tk.Button(electricity_window, text = "average velocity", width=20)
+    average_velocity.pack()
+    
+def waves_window():
+    waves_window = tk.Toplevel(root)
+    waves_window.title("Physics Calculator: Waves")
+    waves_window.geometry("475x350")
+    
+    #-----Momentum Widgets
+    average_velocity = tk.Button(waves_window, text = "average velocity", width=20)
+    average_velocity.pack()
+
+#New Window Widgets ------------
+ap_physics_1_topics = tk.Label(root, text="AP Physics 1")
+ap_physics_1_topics.pack()
+
+create_kinematics_window = tk.Button(root, text="Kinematics", width=20, command=kinematics_window)
+create_kinematics_window.pack()
+
+create_dynamics_window = tk.Button(root, text="Dynamics", width=20, command=dynamics_window)
+create_dynamics_window.pack()
+
+create_circular_motion_window = tk.Button(root, text="Circular Motion", width=20, command=cmotion_window)
+create_circular_motion_window.pack()
+
+create_energy_window = tk.Button(root, text="Energy", width=20, command=energy_window)
+create_energy_window.pack()
+
+create_momentum_window = tk.Button(root, text="Momentum", width=20, command=momentum_window)
+create_momentum_window.pack()
+
+create_shmotion_window = tk.Button(root, text="Simple Harmonic Motion", width=20, command=simple_harmonic_window)
+create_shmotion_window.pack()
+
+create_rotational_window = tk.Button(root, text="Rotational Motion", width=20, command=rotational_window)
+create_rotational_window.pack()
+
+create_electicity_window = tk.Button(root, text="Electricity", width=20, command=electricity_window)
+create_electicity_window.pack()
+
+create_waves_window = tk.Button(root, text="Waves", width=20, command=waves_window)
+create_waves_window.pack()
+
+ap_physics_2_topics = tk.Label(root, text="AP Physics 2 (coming soon)")
+ap_physics_2_topics.pack()
+    
+#This function is just to get rid of the error with the widgets
 def kinetic_energy():
     pass
 #Classes ------------
@@ -146,24 +251,15 @@ def reset():
     label_result["text"] = ("\n\nWhat would you like to calculate?")
 
 #Widgets ------------
-
-label_result = tk.Label(root, text="\n\nWhat would you like to calculate?")
-label_result.pack()
-
-btn_solve_for_mass = tk.Button(root, text="Solve for Mass", command=kinetic_energy)
-btn_solve_for_mass.pack()
-
-btn_solve_for_velocity = tk.Button(root, text="Solve for Velocity", command=kinetic_energy)
-btn_solve_for_velocity.pack()
-
-btn_solve_for_height = tk.Button(root, text="Solve for Height", command=kinetic_energy)
-btn_solve_for_height.pack()
-
-btn_solve_for_spring = tk.Button(root, text="Solve for Spring Constant", command=kinetic_energy)
-btn_solve_for_spring.pack()
-
-btn_solve_for_compression = tk.Button(root, text="Solve for Compression Distance", command=kinetic_energy)
-btn_solve_for_compression.pack()
+#-----Kinematics Widgets
+#-----Dynamics Widgets
+#-----Circular Motion Widgets
+#-----Energy Widgets
+#-----Momentum Widgets
+#-----Simple Harmonics Widgets
+#-----Rotational Motion Widgets
+#-----Electricty Widgets
+#-----Waves Widgets
 
 
 #solve for u
