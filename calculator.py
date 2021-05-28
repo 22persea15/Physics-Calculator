@@ -65,18 +65,69 @@ def energy_window():
     energy_window = tk.Toplevel(root)
     energy_window.title("Physics Calculator: Energy")
     energy_window.geometry("475x350")
+    #-----Functions
+    def kinetic_energy():
+        mass = float(entry_mass.get())
+        velocity = float(entry_velocity.get())
+        kinetic = 0.5 * mass * (velocity ** 2)
+        label_result["text"] = (f"\n\n{kinetic}")
+            
+        entry_mass.delete(0,5)
+        entry_height.delete(0,5)
+        entry_velocity.delete(0,5)
+        entry_spring.delete(0,5)
+        entry_compression.delete(0,5)
+        
+    def gravitational_energy():
+        mass = float(entry_mass.get())
+        height = float(entry_height.get())
+        gravitational = mass * 9.8 * height
+        label_result["text"] = (f"\n\n{gravitational}")
+        
+        entry_mass.delete(0,5)
+        entry_height.delete(0,5)
+        entry_velocity.delete(0,5)
+        entry_spring.delete(0,5)
+        entry_compression.delete(0,5)
+        
+    def elastic_energy():
+        spring = float(entry_spring.get())
+        compression = float(entry_compression.get())
+        elastic = 0.5 * spring * (compression ** 2)
+        label_result["text"] = (f"\n\n{elastic}")
+        
+        entry_mass.delete(0,5)
+        entry_height.delete(0,5)
+        entry_velocity.delete(0,5)
+        entry_spring.delete(0,5)
+        entry_compression.delete(0,5)
+        
+    def mechanical_energy():
+        mass = float(entry_mass.get())
+        velocity = float(entry_velocity.get())
+        height = float(entry_height.get())
+        spring = float(entry_spring.get())
+        compression = float(entry_compression.get())
+        mechanical = (0.5 * mass * (velocity ** 2) )+(mass * 9.8 * height)+(0.5 * spring * (compression ** 2))
+        label_result["text"] = (f"\n\n{mechanical}")
+        
+        entry_mass.delete(0,5)
+        entry_height.delete(0,5)
+        entry_velocity.delete(0,5)
+        entry_spring.delete(0,5)
+        entry_compression.delete(0,5)
     
     #-----Energy Widgets
-    kinetic_energy = tk.Button(energy_window, text = "Kinetic Energy", width=20)
+    kinetic_energy = tk.Button(energy_window, text = "Kinetic Energy", width=20, command=kinetic_energy)
     kinetic_energy.grid(column=1, row=1)
     
-    gravitational_energy = tk.Button(energy_window, text = "Gravitational Potential Energy", width=20)
+    gravitational_energy = tk.Button(energy_window, text = "Gravitational Potential Energy", width=20, command=gravitational_energy)
     gravitational_energy.grid(column=1, row=2)
     
-    elastic_energy = tk.Button(energy_window, text = "Elastic Potential Energy", width=20)
+    elastic_energy = tk.Button(energy_window, text = "Elastic Potential Energy", width=20, command=elastic_energy)
     elastic_energy.grid(column=1, row=3)
     
-    mechanical_energy = tk.Button(energy_window, text = "Mechanical Energy", width=20)
+    mechanical_energy = tk.Button(energy_window, text = "Mechanical Energy", width=20, command=mechanical_energy)
     mechanical_energy.grid(column=1, row=4)
     
     label_mass = tk.Label(energy_window, text="Mass")
@@ -103,6 +154,9 @@ def energy_window():
     label_compression.grid(column=2, row=9)
     entry_compression = tk.Entry(energy_window, width=5)
     entry_compression.grid(column=2, row=10)
+    
+    label_result = tk.Label(energy_window, text="Result")
+    label_result.grid(column=2, row=15)
     
     back = tk.Button(energy_window, text = "Return", width=20, command=show)
     back.grid(column=1, row=15)
