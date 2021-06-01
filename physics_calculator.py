@@ -2,6 +2,7 @@
 #Imports
 import os
 import tkinter as tk
+from tkinter import Tk
 import math
 
 #Create Root ------------
@@ -9,12 +10,17 @@ root = tk.Tk()
 root.title("Physics Calculator")
 root.geometry("475x350")
 
-#New Window Functions -----------
+#Functions -----------
 
-#I have a sneaking suspicion I should be putting these in the Classes
+#I have a sneaking suspicion I should be putting these new windows in the Classes
 #But I don't know how to use class methods in the widgets so
+    
 
+def show():
+    root.deiconify()
+       
 def kinematics_window():
+    root.withdraw()
     kinematics_window = tk.Toplevel(root)
     kinematics_window.title("Physics Calculator: Kinematics")
     kinematics_window.geometry("475x350")
@@ -24,8 +30,12 @@ def kinematics_window():
     topic_label.pack()
     average_velocity = tk.Button(kinematics_window, text = "average velocity", width=20)
     average_velocity.pack()
+    
+    back = tk.Button(energy_window, text = "Return", width=20, command=show)
+    back.pack()()
 
 def dynamics_window():
+    root.withdraw()
     dynamics_window = tk.Toplevel(root)
     dynamics_window.title("Physics Calculator: Dynamics")
     dynamics_window.geometry("475x350")
@@ -34,7 +44,11 @@ def dynamics_window():
     average_velocity = tk.Button(dynamics_window, text = "average velocity", width=20)
     average_velocity.pack()
     
+    back = tk.Button(energy_window, text = "Return", width=20, command=show)
+    back.pack()()
+    
 def cmotion_window():
+    root.withdraw()
     cmotion_window = tk.Toplevel(root)
     cmotion_window.title("Physics Calculator: Circular Motion")
     cmotion_window.geometry("475x350")
@@ -43,25 +57,115 @@ def cmotion_window():
     average_velocity = tk.Button(cmotion_window, text = "average velocity", width=20)
     average_velocity.pack()
     
+    back = tk.Button(energy_window, text = "Return", width=20, command=show)
+    back.pack()
+    
 def energy_window():
+    root.withdraw()
     energy_window = tk.Toplevel(root)
     energy_window.title("Physics Calculator: Energy")
     energy_window.geometry("475x350")
+    #-----Functions
+    def kinetic_energy():
+        mass = float(entry_mass.get())
+        velocity = float(entry_velocity.get())
+        kinetic = 0.5 * mass * (velocity ** 2)
+        label_result["text"] = (f"\n\n{kinetic}")
+            
+        entry_mass.delete(0,5)
+        entry_height.delete(0,5)
+        entry_velocity.delete(0,5)
+        entry_spring.delete(0,5)
+        entry_compression.delete(0,5)
+        
+    def gravitational_energy():
+        mass = float(entry_mass.get())
+        height = float(entry_height.get())
+        gravitational = mass * 9.8 * height
+        label_result["text"] = (f"\n\n{gravitational}")
+        
+        entry_mass.delete(0,5)
+        entry_height.delete(0,5)
+        entry_velocity.delete(0,5)
+        entry_spring.delete(0,5)
+        entry_compression.delete(0,5)
+        
+    def elastic_energy():
+        spring = float(entry_spring.get())
+        compression = float(entry_compression.get())
+        elastic = 0.5 * spring * (compression ** 2)
+        label_result["text"] = (f"\n\n{elastic}")
+        
+        entry_mass.delete(0,5)
+        entry_height.delete(0,5)
+        entry_velocity.delete(0,5)
+        entry_spring.delete(0,5)
+        entry_compression.delete(0,5)
+        
+    def mechanical_energy():
+        mass = float(entry_mass.get())
+        velocity = float(entry_velocity.get())
+        height = float(entry_height.get())
+        spring = float(entry_spring.get())
+        compression = float(entry_compression.get())
+        mechanical = (0.5 * mass * (velocity ** 2) )+(mass * 9.8 * height)+(0.5 * spring * (compression ** 2))
+        label_result["text"] = (f"\n\n{mechanical}")
+        
+        entry_mass.delete(0,5)
+        entry_height.delete(0,5)
+        entry_velocity.delete(0,5)
+        entry_spring.delete(0,5)
+        entry_compression.delete(0,5)
     
     #-----Energy Widgets
-    kinetic_energy = tk.Button(energy_window, text = "Kinetic Energy", width=20)
-    kinetic_energy.pack()
+    kinetic_energy = tk.Button(energy_window, text = "Kinetic Energy", width=20, command=kinetic_energy)
+    kinetic_energy.grid(column=1, row=1)
     
-    gravitational_energy = tk.Button(energy_window, text = "Gravitational Potential Energy", width=20)
-    gravitational_energy.pack()
+    gravitational_energy = tk.Button(energy_window, text = "Gravitational Potential Energy", width=20, command=gravitational_energy)
+    gravitational_energy.grid(column=1, row=2)
     
-    elastic_energy = tk.Button(energy_window, text = "Elastic Potential Energy", width=20)
-    elastic_energy.pack()
+    elastic_energy = tk.Button(energy_window, text = "Elastic Potential Energy", width=20, command=elastic_energy)
+    elastic_energy.grid(column=1, row=3)
     
-    mechanical_energy = tk.Button(energy_window, text = "Mechanical Energy", width=20)
-    mechanical_energy.pack()
+    mechanical_energy = tk.Button(energy_window, text = "Mechanical Energy", width=20, command=mechanical_energy)
+    mechanical_energy.grid(column=1, row=4)
     
+    label_mass = tk.Label(energy_window, text="Mass")
+    label_mass.grid(column=2, row=1)
+    entry_mass = tk.Entry(energy_window, width=5)
+    entry_mass.grid(column=2, row=2)
+
+    label_velocity = tk.Label(energy_window, text="Velocity")
+    label_velocity.grid(column=2, row=3)
+    entry_velocity = tk.Entry(energy_window, width=5)
+    entry_velocity.grid(column=2, row=4)
+
+    label_height = tk.Label(energy_window, text="Height")
+    label_height.grid(column=2, row=5)
+    entry_height = tk.Entry(energy_window, width=5)
+    entry_height.grid(column=2, row=6)
+
+    label_spring = tk.Label(energy_window, text="Spring")
+    label_spring.grid(column=2, row=7)
+    entry_spring = tk.Entry(energy_window, width=5)
+    entry_spring.grid(column=2, row=8)
+
+    label_compression = tk.Label(energy_window, text="Compression")
+    label_compression.grid(column=2, row=9)
+    entry_compression = tk.Entry(energy_window, width=5)
+    entry_compression.grid(column=2, row=10)
+    
+    label_instructions = tk.Label(energy_window, text="Enter the values. Put 0 when the value is unknown")
+    label_instructions.grid(column=1, row=12)
+    
+    label_result = tk.Label(energy_window, text="Result")
+    label_result.grid(column=2, row=15)
+    
+    back = tk.Button(energy_window, text = "Return", width=20, command=show)
+    back.grid(column=1, row=15)
+
 def momentum_window():
+    root.withdraw()
     momentum_window = tk.Toplevel(root)
     momentum_window.title("Physics Calculator: Momentum")
     momentum_window.geometry("475x350")
@@ -69,8 +173,12 @@ def momentum_window():
     #-----Momentum Widgets
     average_velocity = tk.Button(momentum_window, text = "average velocity", width=20)
     average_velocity.pack()
+    
+    back = tk.Button(energy_window, text = "Return", width=20, command=show)
+    back.pack()
 
 def simple_harmonic_window():
+    root.withdraw()
     simple_harmonic_window = tk.Toplevel(root)
     simple_harmonic_window.title("Physics Calculator: Simple Harmonic Motion")
     simple_harmonic_window.geometry("475x350")
@@ -78,8 +186,12 @@ def simple_harmonic_window():
     #-----Momentum Widgets
     average_velocity = tk.Button(simple_harmonic_window, text = "average velocity", width=20)
     average_velocity.pack()
-
+    
+    back = tk.Button(energy_window, text = "Return", width=20, command=show)
+    back.pack()
+    
 def rotational_window():
+    root.withdraw()
     rotational_window = tk.Toplevel(root)
     rotational_window.title("Physics Calculator: Rotational Motion")
     rotational_window.geometry("475x350")
@@ -87,26 +199,106 @@ def rotational_window():
     #-----Momentum Widgets
     average_velocity = tk.Button(rotational_window, text = "average velocity", width=20)
     average_velocity.pack()
+    
+    back = tk.Button(energy_window, text = "Return", width=20, command=show)
+    back.pack()
 
 def electricity_window():
+    root.withdraw()
     electricity_window = tk.Toplevel(root)
     electricity_window.title("Physics Calculator: Electricity")
     electricity_window.geometry("475x350")
     
-    #-----Momentum Widgets
-    average_velocity = tk.Button(electricity_window, text = "average velocity", width=20)
-    average_velocity.pack()
+    #-----Functions
+    def work_energy():
+        pass
+    def total_charge():
+        pass
+    def current():
+        pass
+    def resistance():
+        pass
+    def e_power():
+        current = float(entry_current.get())
+        resistance = float(entry_resistance.get())
+        voltage = float(entry_voltage.get())
+        
+        if voltage != 0 and current != 0:
+            power = voltage * current
+            label_result["text"] = (f"\n\n{power}")
+        
+        elif current != 0 and resistance != 0:
+            power = (current**2)*resistance
+            label_result["text"] = (f"\n\n{power}")
+        
+        elif voltage != 0 and resistance != 0:
+            power = (voltage**2)/resistance
+            label_result["text"] = (f"\n\n{power}")
+            
+        entry_resistance.delete(0,5)
+        entry_current.delete(0,5)
+        entry_voltage.delete(0,5)
+        
+    def parallel_current():
+        pass
+    def parallel_resistance():
+        pass
+    def series_voltage():
+        pass
+    def series_resistance():
+        pass
+    def ohms_law():
+        current = float(entry_current.get())
+        resistance = float(entry_resistance.get())
+        voltage = current * resistance
+        label_result["text"] = (f"\n\n{voltage}")
+            
+        entry_resistance.delete(0,5)
+        entry_current.delete(0,5)
+    
+    #-----Electricity Widgets
+    ohms = tk.Button(electricity_window, text = "Ohm's Law", width=20, command=ohms_law)
+    ohms.grid(column=1, row=1)
+    
+    label_resistance = tk.Label(electricity_window, text="Resistance")
+    label_resistance.grid(column=2, row=3)
+    entry_resistance = tk.Entry(electricity_window, width=5)
+    entry_resistance.grid(column=2, row=4)
+    
+    label_current = tk.Label(electricity_window, text="Current")
+    label_current.grid(column=2, row=5)
+    entry_current = tk.Entry(electricity_window, width=5)
+    entry_current.grid(column=2, row=6)
+    
+    label_voltage = tk.Label(electricity_window, text="Voltage")
+    label_voltage.grid(column=2, row=7)
+    entry_voltage = tk.Entry(electricity_window, width=5)
+    entry_voltage.grid(column=2, row=8)
+    
+    back = tk.Button(electricity_window, text = "Return", width=20, command=show)
+    back.grid(column=1, row=15)
     
 def waves_window():
+    root.withdraw()
     waves_window = tk.Toplevel(root)
     waves_window.title("Physics Calculator: Waves")
     waves_window.geometry("475x350")
     
-    #-----Momentum Widgets
+    #-----Waves Widgets
     average_velocity = tk.Button(waves_window, text = "average velocity", width=20)
     average_velocity.pack()
+    
+    back = tk.Button(energy_window, text = "Return", width=20, command=show)
+    back.pack()
 
-
+def reset():
+    entry_mass.delete(0,5)
+    entry_height.delete(0,5)
+    entry_velocity.delete(0,5)
+    entry_spring.delete(0,5)
+    entry_compression.delete(0,5)
+    
+    label_result["text"] = ("\n\nWhat would you like to calculate?")
 
 #New Window Widgets ------------
 ap_physics_1_topics = tk.Label(root, text="AP Physics 1")
@@ -145,103 +337,18 @@ ap_physics_2_topics.grid(column=2, row=1)
 #This function is just to get rid of the error with the widgets
 def kinetic_energy():
     pass
-#Classes ------------
-class Calculator():
-    def __init__(self, X):
-        self.X = X
+
         
 #----- AP Physics 1
-
-class Kinematics(Calculator):
-    def __init__ (self, X, v_initial, v_final, acceleration, time, distance):
-        Calculator.__init__(self, X)
-        #def average_velocity(self, distance, time):
-            #velocity_average = distance/time
-            #return velocity_average
-            #label_result["text"] = (f"\n\n{velocity_average}")
-        
-        #def average_acceleration(self, v_final, v_initial, time):
-           # ave_acceleration = (v_final - v_initial)/time
-            #return ave_acceleration
-            #label_result["text"] = (f"\n\n{ave_acceleration}")
-        #acceleration 
-        
-        #def constant_acceleration(self, v_initial, v_final, acceleration, time, distance):
-            #pass
-            # v = u + at
-            # v**2 = U**2 + 2as
-            # s = 1/2(u-v)+t
-            # s = ut + 1/2at**2
-        self.v_initial = v_initial
-        self.v_final = v_final
-        self.acceleration = acceleration
-        self.time = time
-        self.distance = distance
-        
-class Dynamics(Calculator):
-    def __init__(self, values, something):
-        Calculator.__init__(self, values)
-        self.something = something
-
-class Circular_Motion(Calculator):
-    def __init__(self, values, something):
-        Calculator.__init__(self, values)
-        self.something = something
-            
-class Energy(Calculator):
-    def __init__(self, values):
-        Calculator.__init__(self, values)
-        self.mass = 1
-        self.velocity = 1
-        self.height = 1
-        self.spring = 1
-        self.compression = 1
-    
-    def kinetic_energy(self, mass, velocity):
-        kinetic = 0.5 * mass * (velocity ** 2)
-        
-    def get_kinetic(self):
-        #label_result["text"] = (f"\n\n{kinetic}")
-        return kinetic
-    
-    def gravitational_energy(self, mass, height):
-        gravitational = mass * 9.8 * height
-    
-    def get_gravitational(self):
-        #label_result["text"] = (f"\n\n{gravitational}")
-        return gravitational 
-    
-    def elastic_energy(self, spring, comprehension):
-        elastic = 0.5 * spring * (compression ** 2)
-    
-    def get_elastic(self):
-        #label_result["text"] = (f"\n\n{elastic}")
-        return elastic 
-
-class Momentum(Calculator):
-    def __init__(self, values, something):
-        Calculator.__init__(self, values)
-        self.something = something
-
-class Simple_Harmonic(Calculator):
-    def __init__(self, values, something):
-        Calculator.__init__(self, values)
-        self.something = something
-            
-class Rotational_Motion(Calculator):
-    def __init__(self, values, something):
-        Calculator.__init__(self, values)
-        self.something = something
-        
-class Electricity(Calculator):
-    def __init__(self, values, something):
-        Calculator.__init__(self, values)
-        self.something = something
-            
-class Waves(Calculator):
-    def __init__(self, values, something):
-        Calculator.__init__(self, values)
-        self.something = something
+#kinematics
+#dynamics
+#circular            
+#energy
+#momentum
+#simple harmonic
+#rotational motion
+#electicity
+#waves
 
 #----- AP Physics 2
 #fluids
@@ -252,17 +359,6 @@ class Waves(Calculator):
 #geometric and physical optics
 #quantum, atomic, and nuclear physics
 
-
-#Functions ------------
-
-def reset():
-    entry_mass.delete(0,5)
-    entry_height.delete(0,5)
-    entry_velocity.delete(0,5)
-    entry_spring.delete(0,5)
-    entry_compression.delete(0,5)
-    
-    label_result["text"] = ("\n\nWhat would you like to calculate?")
 
 #Widgets ------------
 #in the new window functions!
